@@ -6,6 +6,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    //private AudioSource Audio;
     public int Playerindex;
     public TextMeshProUGUI playerScoreText;
     [Header("Player Stats")]
@@ -14,13 +15,19 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Audio = GetComponent<AudioSource>();
+
+        // Debug.Log(Audio);
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerInput();
+        // if (playerScore == 69)
+        // {
+        //     Audio.Play(); //SHould Plays Bomb has been planted sound
+        // }
 
     }
 
