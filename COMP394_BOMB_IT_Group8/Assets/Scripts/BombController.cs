@@ -6,6 +6,7 @@ using UnityEngine;
 public class BombController : MonoBehaviour
 {
     private SpriteRenderer bombSpriteRenderer;
+    private RoundManager roundManager;
 
     private int trueFlashChance = 1;
     private int decoyFlashChance = 2;
@@ -15,6 +16,7 @@ public class BombController : MonoBehaviour
     {
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
         ogColor = bombSpriteRenderer.color;
+        roundManager = FindObjectOfType<RoundManager>();
         InvokeRepeating("RandomBombFlash", 3f, 8f);
     }
 
@@ -23,6 +25,8 @@ public class BombController : MonoBehaviour
         // Use range 1..3 to allow values 1,2 (inclusive 1, exclusive 3).
         int flashChance = Random.Range(1, 3);
         StartCoroutine(FlashBomb(flashChance));
+
+        roundManager.SetRoundStatus(flashChance);
 
         Debug.Log("Bomb flashed with chance: " + flashChance);
     }
@@ -43,8 +47,9 @@ public class BombController : MonoBehaviour
         {
             bombSpriteRenderer.color = GetRandomNonYellowColor();
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         bombSpriteRenderer.color = ogColor;
+        roundManager.SetRoundStatus(0);
     }
 
     /// Returns a random color that avoids yellow hues so yellow remains exclusive to the true flash.
