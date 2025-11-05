@@ -7,27 +7,25 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     //private AudioSource Audio;
+
+    public bool isTrueRound = false;
+
     public int Playerindex;
     public TextMeshProUGUI playerScoreText;
     [Header("Player Stats")]
     [SerializeField]private int playerScore = 0;
-    
+    public bool playerInputActive;
+
     // Start is called before the first frame update
     void Start()
     {
-        // Audio = GetComponent<AudioSource>();
-
-        // Debug.Log(Audio);
+        playerScoreText.text = playerScore.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerInput();
-        // if (playerScore == 69)
-        // {
-        //     Audio.Play(); //SHould Plays Bomb has been planted sound
-        // }
 
     }
 
@@ -36,40 +34,59 @@ public class PlayerController : MonoBehaviour
         playerScore += scoreToAdd;
         playerScoreText.text = playerScore.ToString();
     }
+
+    private void PlayerInputONTrueRound()
+    {
+        if (isTrueRound)
+        {
+            UpdatePlayerScore(1);
+        }
+    }
     
+    private void PlayerInputONDecoyRound()
+    {
+        if (!isTrueRound)
+        {
+            UpdatePlayerScore(-1);
+        }
+    }
+
     protected void PlayerInput()
     {
-        //Debug.Log("Player Index: " + Playerindex);
         if (Playerindex == 1)
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.Tab) && playerInputActive)
             {
                 Debug.Log("Player 1 Pressed Tab");
-                UpdatePlayerScore(1);
+                PlayerInputONDecoyRound();
+                PlayerInputONTrueRound();
             }
         }
         if (Playerindex == 2)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && playerInputActive)
             {
                 Debug.Log("Player 2 Pressed LeftShift");
-                UpdatePlayerScore(1);
+                PlayerInputONDecoyRound();
+                PlayerInputONTrueRound();
             }
         }
         if (Playerindex == 3)
         {
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (Input.GetKeyDown(KeyCode.Backspace) && playerInputActive)
             {
                 Debug.Log("Player 3 Pressed Backspace");
-                UpdatePlayerScore(1);
+                PlayerInputONDecoyRound();
+                PlayerInputONTrueRound();
             }
         }
         if (Playerindex == 4)
         {
-            if (Input.GetKeyDown(KeyCode.RightShift))
+            if (Input.GetKeyDown(KeyCode.RightShift) && playerInputActive)
             {
                 Debug.Log("Player 4 Pressed RightShift");
-                UpdatePlayerScore(1);
+                PlayerInputONDecoyRound();
+                PlayerInputONTrueRound();
             }
         }       
     }
