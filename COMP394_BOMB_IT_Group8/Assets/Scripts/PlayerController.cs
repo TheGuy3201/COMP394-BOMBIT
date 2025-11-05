@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Player 1 Pressed Tab");
                 PlayerInputONDecoyRound();
                 PlayerInputONTrueRound();
+                playerInputActive = false;
             }
         }
         if (Playerindex == 2)
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Player 2 Pressed LeftShift");
                 PlayerInputONDecoyRound();
                 PlayerInputONTrueRound();
+                playerInputActive = false;
             }
         }
         if (Playerindex == 3)
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Player 3 Pressed Backspace");
                 PlayerInputONDecoyRound();
                 PlayerInputONTrueRound();
+                playerInputActive = false;
             }
         }
         if (Playerindex == 4)
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Player 4 Pressed RightShift");
                 PlayerInputONDecoyRound();
                 PlayerInputONTrueRound();
+                playerInputActive = false;
             }
         }       
     }
