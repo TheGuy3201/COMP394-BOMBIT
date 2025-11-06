@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 89f09c51443b31840b4e1ac5e9f91dea
+guid: e5ce4807ba1b4b3419628a49f758fbcf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 8
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,37 +93,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cowboy_idle_right_spritesheet_0
+      name: bombV3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62bf3a4c1be195b43ae1ea1d09789fd9
-      internalID: -1506400
+      spriteID: b0fac57f7a18cab43a263f8599691669
+      internalID: 231734070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cowboy_idle_right_spritesheet_1
+      name: bombV3_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4070507e45915e94db94e6be3ba678b8
-      internalID: 537222026
+      spriteID: c5e2b23ad859e824694f51022216da24
+      internalID: -1713720099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cowboy_idle_right_spritesheet_2
+      name: bombV3_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f33f17021f74d04a931fd059ca129ef
-      internalID: -2021473894
+      spriteID: 2d5df0a59f816b6449b1906c72e151ee
+      internalID: -651140768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cowboy_idle_right_spritesheet_3
+      name: bombV3_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3f13e657994bd94fbda5a9759e0934e
-      internalID: -1670885553
+      spriteID: cefaa0fa7eb05d44fb7d5d6286b9c819
+      internalID: -1616692088
       vertices: []
       indices: 
       edges: []
@@ -217,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cowboy_idle_right_spritesheet_0: -1506400
-      cowboy_idle_right_spritesheet_1: 537222026
-      cowboy_idle_right_spritesheet_2: -2021473894
-      cowboy_idle_right_spritesheet_3: -1670885553
+      bombV3_0: 231734070
+      bombV3_1: -1713720099
+      bombV3_2: -651140768
+      bombV3_3: -1616692088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

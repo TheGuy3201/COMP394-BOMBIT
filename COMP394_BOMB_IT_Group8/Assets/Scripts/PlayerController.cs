@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using TMPro;
+using Button = UnityEngine.UI.Button;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class PlayerController : MonoBehaviour
 
     public int Playerindex;
     public TextMeshProUGUI playerScoreText;
+    public Button btn;
     [Header("Player Stats")]
-    [SerializeField]private int playerScore = 0;
+    [SerializeField] private int playerScore = 0;
     public bool playerInputActive;
 
     // Start is called before the first frame update
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
             UpdatePlayerScore(1);
         }
     }
-    
+
     private void PlayerInputONDecoyRound()
     {
         if (!isTrueRound)
@@ -75,7 +77,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Playerindex == 3)
         {
-            if (Input.GetKeyDown(KeyCode.Backspace) && playerInputActive)
+            if (Input.GetKeyDown(KeyCode.RightShift) && playerInputActive)
             {
                 Debug.Log("Player 3 Pressed Backspace");
                 PlayerInputONDecoyRound();
@@ -85,13 +87,13 @@ public class PlayerController : MonoBehaviour
         }
         if (Playerindex == 4)
         {
-            if (Input.GetKeyDown(KeyCode.RightShift) && playerInputActive)
+            if (Input.GetKeyDown(KeyCode.Backspace) && playerInputActive)
             {
                 Debug.Log("Player 4 Pressed RightShift");
                 PlayerInputONDecoyRound();
                 PlayerInputONTrueRound();
                 playerInputActive = false;
             }
-        }       
+        }
     }
 }

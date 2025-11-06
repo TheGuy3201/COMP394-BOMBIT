@@ -12,7 +12,6 @@ class RoundManager : MonoBehaviour
 
     public void Start()
     {
-        players.AddRange(FindObjectsOfType<PlayerController>());
     }
     private void FixedUpdate()
     {
