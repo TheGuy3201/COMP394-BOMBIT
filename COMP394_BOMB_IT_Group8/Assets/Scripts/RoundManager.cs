@@ -8,8 +8,7 @@ class RoundManager : MonoBehaviour
     private int roundStatus = 0;
     public int numberOfRoundsPlayed = 0;
 
-    public List<PlayerController> players = new List<PlayerController>();
-
+    public PlayersManager pc;
     public void Start()
     {
     }
@@ -42,7 +41,7 @@ class RoundManager : MonoBehaviour
 
     private void SetPlayerInputActive(bool isActive)
     {
-        foreach (PlayerController player in players)
+        foreach (PlayersManager.BombItPlayer player in pc.Players)
         {
             player.playerInputActive = isActive;
         }
@@ -50,10 +49,7 @@ class RoundManager : MonoBehaviour
 
     private void SetRoundMode(bool isTrueRound)
     {
-        foreach (PlayerController player in players)
-        {
-            player.isTrueRound = isTrueRound;
-        }
+        pc.isTrueRound= isTrueRound;
     }
 
     public void SetRoundStatus(int status)
