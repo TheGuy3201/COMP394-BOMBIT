@@ -123,6 +123,10 @@ public class PlayersManager : MonoBehaviour
 
     protected void PlayerInput()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         // P1 — Tab
         if (Input.GetKeyDown(KeyCode.Tab) && Players[0].playerInputActive)
         {
