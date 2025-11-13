@@ -6,6 +6,8 @@ using TMPro;
 using Button = UnityEngine.UI.Button;
 using UnityEngine.PlayerLoop;
 using UnityEngine.EventSystems;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class PlayersManager : MonoBehaviour
 {
@@ -125,7 +127,7 @@ public class PlayersManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene("TitleScreen");
         }
         // P1 — Tab
         if (Input.GetKeyDown(KeyCode.Tab) && Players[0].playerInputActive)
