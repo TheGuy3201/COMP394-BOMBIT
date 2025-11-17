@@ -11,7 +11,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayersManager : MonoBehaviour
 {
-    //private AudioSource Audio;
+    private AudioSource _audioSource;
+    public AudioClip buttonPressSfx;
 
     public bool isTrueRound = false;
     [System.Serializable]
@@ -94,6 +95,7 @@ public class PlayersManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         foreach (BombItPlayer pl in Players)
         {
 
@@ -132,6 +134,7 @@ public class PlayersManager : MonoBehaviour
         // P1 — Tab
         if (Input.GetKeyDown(KeyCode.Tab) && Players[0].playerInputActive)
         {
+            if (buttonPressSfx != null) _audioSource.PlayOneShot(buttonPressSfx);
             Debug.Log("Player 1 Pressed Tab");
             PlayerInputOnRound(Players[0]);
             Players[0].playerInputActive = false;
@@ -142,6 +145,7 @@ public class PlayersManager : MonoBehaviour
         // P2 — LeftShift
         if (Input.GetKeyDown(KeyCode.LeftShift) && Players[1].playerInputActive)
         {
+            if (buttonPressSfx != null) _audioSource.PlayOneShot(buttonPressSfx);
             Debug.Log("Player 2 Pressed LeftShift");
             PlayerInputOnRound(Players[1]);
             Players[1].playerInputActive = false;
@@ -152,6 +156,7 @@ public class PlayersManager : MonoBehaviour
         // P3 — RightShift
         if (Input.GetKeyDown(KeyCode.RightShift) && Players[2].playerInputActive)
         {
+            if (buttonPressSfx != null) _audioSource.PlayOneShot(buttonPressSfx);
             Debug.Log("Player 3 Pressed RightShift");
             PlayerInputOnRound(Players[2]);
             Players[2].playerInputActive = false;
@@ -162,6 +167,7 @@ public class PlayersManager : MonoBehaviour
         // P4 — Backspace
         if (Input.GetKeyDown(KeyCode.Backspace) && Players[3].playerInputActive)
         {
+            if (buttonPressSfx != null) _audioSource.PlayOneShot(buttonPressSfx);
             Debug.Log("Player 4 Pressed Backspace");
             PlayerInputOnRound(Players[3]);
             Players[3].playerInputActive = false;
