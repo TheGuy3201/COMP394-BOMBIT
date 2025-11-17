@@ -1665,6 +1665,9 @@ GameObject:
 =======
   - component: {fileID: 974859460}
   - component: {fileID: 974859461}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_Layer: 0
   m_Name: bomb
