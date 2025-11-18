@@ -9,8 +9,8 @@ public class BombController : MonoBehaviour
     private RoundManager roundManager;
     private AudioSource _audioSource;
 
-    public AudioClip trueFlashSfx;
-    public AudioClip decoyFlashSfx;
+    public string trueFlashSfx = "";
+    public string decoyFlashSfx = "";
 
     private int trueFlashChance = 1;
     private int decoyFlashChance = 2;
@@ -46,12 +46,12 @@ public class BombController : MonoBehaviour
     {
         if (flashChance == trueFlashChance)
         {
-            if (trueFlashSfx != null) _audioSource.PlayOneShot(trueFlashSfx);
+            if (trueFlashSfx != null) AudioManager.Play(trueFlashSfx);
             bombSpriteRenderer.color = Color.yellow;
         }
         else if (flashChance == decoyFlashChance)
         {
-            if (decoyFlashSfx != null) _audioSource.PlayOneShot(decoyFlashSfx);
+            if (decoyFlashSfx != null) AudioManager.Play(decoyFlashSfx);
             bombSpriteRenderer.color = GetRandomNonYellowColor();
         }
         yield return new WaitForSeconds(0.8f);
