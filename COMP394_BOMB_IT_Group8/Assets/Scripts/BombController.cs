@@ -18,6 +18,7 @@ public class BombController : MonoBehaviour
 
     void Start()
     {
+        // gets the audio source component
         _audioSource = GetComponent<AudioSource>();
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
         ogColor = bombSpriteRenderer.color;
@@ -45,12 +46,12 @@ public class BombController : MonoBehaviour
     private IEnumerator FlashBomb(int flashChance)
     {
         if (flashChance == trueFlashChance)
-        {
+        {   // plays true flash sound effect and changes bomb color to yellow
             if (trueFlashSfx != null) AudioManager.Play(trueFlashSfx);
             bombSpriteRenderer.color = Color.yellow;
         }
         else if (flashChance == decoyFlashChance)
-        {
+        {   // plays decoy flash sound effect and changes bomb color to a random non-yellow color
             if (decoyFlashSfx != null) AudioManager.Play(decoyFlashSfx);
             bombSpriteRenderer.color = GetRandomNonYellowColor();
         }

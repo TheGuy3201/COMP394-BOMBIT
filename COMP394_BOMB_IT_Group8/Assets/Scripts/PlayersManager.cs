@@ -131,7 +131,7 @@ public class PlayersManager : MonoBehaviour
         }
         // P1 — Tab
         if (Input.GetKeyDown(KeyCode.Tab) && Players[0].playerInputActive)
-        {
+        {   // Play sound effect when button is pressed
             if (buttonPressSfx != null) AudioManager.Play(buttonPressSfx);
             Debug.Log("Player 1 Pressed Tab");
             PlayerInputOnRound(Players[0]);
@@ -142,7 +142,7 @@ public class PlayersManager : MonoBehaviour
 
         // P2 — LeftShift
         if (Input.GetKeyDown(KeyCode.LeftShift) && Players[1].playerInputActive)
-        {
+        {   // Play sound effect when button is pressed
             if (buttonPressSfx != null) AudioManager.Play(buttonPressSfx);
             Debug.Log("Player 2 Pressed LeftShift");
             PlayerInputOnRound(Players[1]);
@@ -153,7 +153,7 @@ public class PlayersManager : MonoBehaviour
 
         // P3 — RightShift
         if (Input.GetKeyDown(KeyCode.RightShift) && Players[2].playerInputActive)
-        {
+        {   // Play sound effect when button is pressed
             if (buttonPressSfx != null) AudioManager.Play(buttonPressSfx);
             Debug.Log("Player 3 Pressed RightShift");
             PlayerInputOnRound(Players[2]);
@@ -164,7 +164,7 @@ public class PlayersManager : MonoBehaviour
 
         // P4 — Backspace
         if (Input.GetKeyDown(KeyCode.Backspace) && Players[3].playerInputActive)
-        {
+        {   // Play sound effect when button is pressed
             if (buttonPressSfx != null) AudioManager.Play(buttonPressSfx);
             Debug.Log("Player 4 Pressed Backspace");
             PlayerInputOnRound(Players[3]);
