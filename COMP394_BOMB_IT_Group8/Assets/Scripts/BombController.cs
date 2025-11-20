@@ -7,72 +7,88 @@ public class BombController : MonoBehaviour
 {
     private SpriteRenderer bombSpriteRenderer;
     private RoundManager roundManager;
+    private Animator animator;
+    public enum BombState{idle,canDefuse,cannotDefuse}
 
-    private int trueFlashChance = 1;
-    private int decoyFlashChance = 2;
+    public BombState _bombState;
+    private float trueFlashProbability = 0.5f;
     private Color ogColor;
+    public bool animating=false;
+    
+    private static readonly Color[] NonYellowColors =
+    {
+        Color.red,
+        Color.blue,
+        Color.green,
+        Color.cyan,
+        Color.magenta,
+    };
 
+    private static string explode = "Explode", defuse= "Defuse";
     void Start()
     {
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
         ogColor = bombSpriteRenderer.color;
         roundManager = FindObjectOfType<RoundManager>();
+        animator=GetComponent<Animator>();
         InvokeRepeating("RandomBombFlash", 3f, 8f);
+        
     }
 
     public void RandomBombFlash()
     {
+        
         // Use range 1..3 to allow values 1,2 (inclusive 1, exclusive 3).
-        int flashChance = Random.Range(1, 3);
-        StartCoroutine(FlashBomb(flashChance));
+        float newRandomNumber = Random.Range(0.01f, 1f);
+        StartCoroutine(FlashBomb(newRandomNumber));
+        
+        
 
-        roundManager.SetRoundStatus(flashChance);
-
-        Debug.Log("Bomb flashed with chance: " + flashChance);
+        Debug.Log("Bomb flashed with chance: " + trueFlashProbability);
     }
 
-    void BombExplode()
+    public void BombExplode()
     {
-        //Implement bomb explosion logic here
-        throw new System.NotImplementedException();
+        if (animating) {return;}
+        animating = true;
+        animator.SetTrigger(explode);
+    }
+    public void BombDefuse()
+    {
+        if (animating) {return;}
+        animating=true;
+        animator.SetTrigger(defuse);
     }
 
-    private IEnumerator FlashBomb(int flashChance)
+    public void FinishAnimation()
     {
-        if (flashChance == trueFlashChance)
+        animating = false;
+
+    }
+
+    private IEnumerator FlashBomb(float flashChance)
+    {
+        if (flashChance > trueFlashProbability)
         {
             bombSpriteRenderer.color = Color.yellow;
+            _bombState=BombState.canDefuse;
         }
-        else if (flashChance == decoyFlashChance)
+        else
         {
             bombSpriteRenderer.color = GetRandomNonYellowColor();
+            _bombState=BombState.cannotDefuse;
         }
+        roundManager.SetRoundStatus(_bombState);
         yield return new WaitForSeconds(0.8f);
         bombSpriteRenderer.color = ogColor;
-        roundManager.SetRoundStatus(0);
+        roundManager.SetRoundStatus(0f);
+        _bombState = BombState.idle;
     }
 
     /// Returns a random color that avoids yellow hues so yellow remains exclusive to the true flash.
     private Color GetRandomNonYellowColor()
     {
-        const int maxAttempts = 12;
-        // Hue for yellow is approximately 0.10 - 0.17 in 0..1 range (around 36°-61°).
-        const float yellowHueMin = 0.10f;
-        const float yellowHueMax = 0.17f;
-
-        for (int i = 0; i < maxAttempts; i++)
-        {
-            Color c = new Color(Random.value, Random.value, Random.value);
-            Color.RGBToHSV(c, out float h, out float s, out float v);
-
-            // Reject colors that are close to yellow: hue in yellow range and reasonably bright and saturated.
-            if (!(h >= yellowHueMin && h <= yellowHueMax && v > 0.45f && s > 0.35f))
-            {
-                return c;
-            }
-        }
-
-        // Fallback: return a safe non-yellow color
-        return Color.magenta;
+        int index = Random.Range(0, NonYellowColors.Length); // max is exclusive
+        return NonYellowColors[index];
     }
 }

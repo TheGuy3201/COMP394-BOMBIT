@@ -11,7 +11,10 @@ public class PlayersManager : MonoBehaviour
 {
     //private AudioSource Audio;
 
-    public bool isTrueRound = false;
+    
+    public RoundManager roundManager;
+    public BombController bombController;
+    private float cooldown = 1.0f;
     [System.Serializable]
     public class BombItPlayer
     {
@@ -19,6 +22,8 @@ public class PlayersManager : MonoBehaviour
         [SerializeField] public int playerScore = 0;
         [SerializeField] public bool playerInputActive;
         public Button btn;
+        public bool hasPressedBefore = false;
+        
 
         private MonoBehaviour _runner;
         private Coroutine _pressRoutine;
@@ -111,14 +116,18 @@ public class PlayersManager : MonoBehaviour
 
     private void PlayerInputOnRound(BombItPlayer player)
     {
-        if (isTrueRound)
+        
+        if (roundManager.isTrueRound)
         {
             player.UpdatePlayerScore(1);
+            bombController.BombDefuse();
         }
         else
         {
             player.UpdatePlayerScore(-1);
+            bombController.BombExplode();
         }
+        player.hasPressedBefore=true;
     }
 
     protected void PlayerInput()
@@ -129,9 +138,12 @@ public class PlayersManager : MonoBehaviour
             Debug.Log("Player 1 Pressed Tab");
             PlayerInputOnRound(Players[0]);
             Players[0].playerInputActive = false;
-            Players[0].PressFor(0.25f);
+            Players[0].PressFor(cooldown);
         }
-        if (Input.GetKeyUp(KeyCode.Tab)) Players[0].CancelPress();
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            Players[0].CancelPress();
+        }
 
         // P2 — LeftShift
         if (Input.GetKeyDown(KeyCode.LeftShift) && Players[1].playerInputActive)
@@ -139,9 +151,12 @@ public class PlayersManager : MonoBehaviour
             Debug.Log("Player 2 Pressed LeftShift");
             PlayerInputOnRound(Players[1]);
             Players[1].playerInputActive = false;
-            Players[1].PressFor(0.25f);
+            Players[1].PressFor(cooldown);
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift)) Players[1].CancelPress();
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Players[1].CancelPress();
+        }
 
         // P3 — RightShift
         if (Input.GetKeyDown(KeyCode.RightShift) && Players[2].playerInputActive)
@@ -149,9 +164,12 @@ public class PlayersManager : MonoBehaviour
             Debug.Log("Player 3 Pressed RightShift");
             PlayerInputOnRound(Players[2]);
             Players[2].playerInputActive = false;
-            Players[2].PressFor(0.25f);
+            Players[2].PressFor(cooldown);
         }
-        if (Input.GetKeyUp(KeyCode.RightShift)) Players[2].CancelPress();
+        if (Input.GetKeyUp(KeyCode.RightShift))
+        {
+            Players[2].CancelPress();
+        }
 
         // P4 — Backspace
         if (Input.GetKeyDown(KeyCode.Backspace) && Players[3].playerInputActive)
@@ -159,8 +177,11 @@ public class PlayersManager : MonoBehaviour
             Debug.Log("Player 4 Pressed Backspace");
             PlayerInputOnRound(Players[3]);
             Players[3].playerInputActive = false;
-            Players[3].PressFor(0.25f);
+            Players[3].PressFor(cooldown);
         }
-        if (Input.GetKeyUp(KeyCode.Backspace)) Players[3].CancelPress();
+        if (Input.GetKeyUp(KeyCode.Backspace))
+        {
+            Players[3].CancelPress();
+        }
     }
 }
