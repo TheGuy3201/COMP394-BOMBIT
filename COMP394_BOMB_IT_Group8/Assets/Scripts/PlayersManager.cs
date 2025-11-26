@@ -6,7 +6,6 @@ using TMPro;
 using Button = UnityEngine.UI.Button;
 using UnityEngine.PlayerLoop;
 using UnityEngine.EventSystems;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class PlayersManager : MonoBehaviour
