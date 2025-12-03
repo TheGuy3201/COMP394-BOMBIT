@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 using UnityEngine.PlayerLoop;
 using UnityEngine.EventSystems;
@@ -12,6 +13,8 @@ public class PlayersManager : MonoBehaviour
 {
     public string buttonPressSfx = "";
 
+    Color playerScoreOriginalColor = new Color(255,255,255,100);
+
     public bool isTrueRound = false;
     [System.Serializable]
     public class BombItPlayer
@@ -19,6 +22,8 @@ public class PlayersManager : MonoBehaviour
         public TextMeshProUGUI playerScoreText;
         [SerializeField] public int playerScore = 0;
         [SerializeField] public bool playerInputActive;
+
+        
         public Button btn;
 
         private MonoBehaviour _runner;
@@ -82,8 +87,20 @@ public class PlayersManager : MonoBehaviour
         }
 
         // Optional helpers you already had
-        public void UpdatePlayerScore(int add) { playerScore += add; playerScoreText.text = playerScore.ToString(); }
+        public void UpdatePlayerScore(int add) { 
+            playerScore += add; 
+            playerScoreText.text = playerScore.ToString(); 
+            playerScoreText.GetComponentInParent<Image>().color = Color.yellow; 
+            _runner.StartCoroutine(_runner is PlayersManager pm ? pm.reverseColorCoroutine(this) : null);
+            }
+
         public void UpdatePlayerScore() { playerScoreText.text = playerScore.ToString(); }
+    }
+
+    IEnumerator reverseColorCoroutine(BombItPlayer player)
+    {
+        yield return new WaitForSeconds(0.5f);
+        player.playerScoreText.GetComponentInParent<Image>().color = playerScoreOriginalColor;
     }
 
     PointerEventData pointerEventData;

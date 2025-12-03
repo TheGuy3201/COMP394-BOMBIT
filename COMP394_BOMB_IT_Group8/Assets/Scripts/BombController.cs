@@ -23,7 +23,7 @@ public class BombController : MonoBehaviour
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
         ogColor = bombSpriteRenderer.color;
         roundManager = FindObjectOfType<RoundManager>();
-        InvokeRepeating("RandomBombFlash", 3f, 8f);
+        Invoke("RandomBombFlash", 3f);
     }
 
     public void RandomBombFlash()
@@ -35,6 +35,9 @@ public class BombController : MonoBehaviour
         roundManager.SetRoundStatus(flashChance);
 
         Debug.Log("Bomb flashed with chance: " + flashChance);
+        
+        // Schedule next flash with a random interval
+        Invoke("RandomBombFlash", Random.Range(2f, 10f));
     }
 
     void BombExplode()
